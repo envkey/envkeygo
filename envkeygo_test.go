@@ -14,13 +14,14 @@ const INVALID_ENVKEY = "Emzt4BE7C23QtsC7gb1z-3NvfNiG1Boy6XH2oinvalid-env-staging
 
 func TestLoadMissing(t *testing.T) {
 	os.Clearenv()
-	assert.Panics(t, func() { envkeygo.Load() })
+	assert.NotNil(t, envkeygo.Load())
 }
 
 func TestLoadValid(t *testing.T) {
 	os.Clearenv()
 	os.Setenv("ENVKEY", VALID_ENVKEY)
-	envkeygo.Load()
+	err := envkeygo.Load()
+	assert.Nil(t, err)
 	assert.Equal(t, "it", os.Getenv("TEST"))
 	assert.Equal(t, "works!", os.Getenv("TEST_2"))
 }
@@ -28,14 +29,15 @@ func TestLoadValid(t *testing.T) {
 func TestLoadInvalid(t *testing.T) {
 	os.Clearenv()
 	os.Setenv("ENVKEY", INVALID_ENVKEY)
-	assert.Panics(t, func() { envkeygo.Load() })
+	assert.NotNil(t, envkeygo.Load())
 }
 
 func TestLoadOverrides(t *testing.T) {
 	os.Clearenv()
 	os.Setenv("ENVKEY", VALID_ENVKEY)
 	os.Setenv("TEST_2", "override")
-	envkeygo.Load()
+	err := envkeygo.Load()
+	assert.Nil(t, err)
 	assert.Equal(t, "it", os.Getenv("TEST"))
 	assert.Equal(t, "override", os.Getenv("TEST_2"))
 }

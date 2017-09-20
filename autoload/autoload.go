@@ -3,5 +3,8 @@ package autoload
 import "github.com/envkey/envkeygo"
 
 func init() {
-	envkeygo.Load()
+	err := envkeygo.Load()
+	if err != nil {
+		panic(err)
+	}
 }
