@@ -1,6 +1,6 @@
 # envkey-go
 
-Integrate [EnvKey](https://www.envkey.com) with your Go projects to keep configuration securely and automatically in sync for developers and servers.
+Integrate [EnvKey](https://www.envkey.com) with your Go projects to keep api keys, credentials, and other configuration securely and automatically in sync for developers and servers.
 
 ## Installation
 
