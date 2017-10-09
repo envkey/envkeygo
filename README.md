@@ -33,7 +33,7 @@ envkeygo will not overwrite existing environment variables or additional variabl
 
 envkeygo caches your encrypted config in development so that you can still use it while offline. Your config will still be available (though possibly not up-to-date) the next time you lose your internet connection. If you do have a connection available, envkeygo will always load the latest config. Your cached encrypted config is stored in `$HOME/.envkey/cache`
 
-For caching purposes, the gem assumes you're in development mode if a `.env` file exists in the root of your project.
+For caching purposes, this package assumes you're in development mode if a `.env` file exists in the root of your project.
 
 ## Further Reading
 
