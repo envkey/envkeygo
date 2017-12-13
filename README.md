@@ -27,7 +27,7 @@ token := os.Getenv("GITHUB_TOKEN") // this will stay in sync
 
 ### Overriding Vars
 
-envkeygo will not overwrite existing environment variables or additional variables set in a `.env` file. This can be convenient for customizing environments that otherwise share the same configuration. You can read more about this topic in the EnvKey [docs](https://docs.envkey.com/overriding-envkey-variables.html).
+envkeygo will not overwrite existing environment variables or additional variables set in a `.env` file. This can be convenient for customizing environments that otherwise share the same configuration. You can also use [sub-environments](https://blog.envkey.com/development-staging-production-and-beyond-85f26f65edd6) in the EnvKey App for this purpose.
 
 ### Working Offline
 
