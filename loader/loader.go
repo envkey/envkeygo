@@ -18,7 +18,7 @@ func Load(shouldCache bool) {
 		panic(errors.New("missing ENVKEY"))
 	}
 
-	res := fetch.Fetch(envkey, fetch.FetchOptions{shouldCache, ""})
+	res := fetch.Fetch(envkey, fetch.FetchOptions{shouldCache, "", "envkeygo", ""})
 
 	if strings.HasPrefix(res, "error:") {
 		panic(errors.New(strings.Split(res, "error:")[1]))
