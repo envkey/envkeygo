@@ -1,33 +1,43 @@
 package loader
 
 import (
-	"encoding/json"
 	"errors"
 	"os"
 
-	"github.com/envkey/envkey-fetch/fetch"
-	"github.com/joho/godotenv"
+	"github.com/envkey/envkey/public/sdks/envkey-source/env"
+	"github.com/envkey/envkey/public/sdks/envkey-source/fetch"
 )
 
-func Load(shouldCache bool) {
-	godotenv.Load()
-	envkey := os.Getenv("ENVKEY")
+func Load(shouldCache bool, firstAttempt bool) {
+	var envkey string
+	var appConfig env.AppConfig
+	var err error
+
+	/*
+	* ENVKEY lookup order:
+	* 	1 - Argument passed via command line
+	*		2 - ENVKEY environment variable is set
+	*		3 - .env file in current directory
+	*		4 - .envkey config file in current directory {appId: string, orgId: string}
+	*				+ file at ~/.envkey/apps/[appId].env (for local keys mainly)
+	*	  5 - .env file at ~/.env
+	 */
+
+	envkey, appConfig = env.GetEnvkey(false, "envFileOverride", true, false)
 
 	if envkey == "" {
 		panic(errors.New("missing ENVKEY"))
 	}
 
-	res, err := fetch.Fetch(envkey, fetch.FetchOptions{shouldCache, "", "envkeygo", "", false, 15.0, 3, 1})
+	resMap, err := fetch.FetchMap(envkey, fetch.FetchOptions{shouldCache, "", "envkeygo", "", false, 15.0, 3, 1})
 
-	if err != nil {
+	if err != nil && err.Error() == "ENVKEY invalid" && appConfig.AppId != "" {
+		// clear out incorrect ENVKEY and try again
+		env.ClearAppEnvkey(appConfig.AppId)
+		Load(shouldCache, false)
+		return
+	} else if err != nil {
 		panic(err)
-	}
-
-	var resMap map[string]string
-	err = json.Unmarshal([]byte(res), &resMap)
-
-	if err != nil {
-		panic(errors.New("problem parsing EnvKey's response"))
 	}
 
 	for k, v := range resMap {

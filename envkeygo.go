@@ -3,14 +3,10 @@ package envkeygo
 import (
 	"os"
 
-	"github.com/envkey/envkeygo/loader"
+	"github.com/envkey/envkeygo/v2/loader"
 )
 
 func init() {
-	shouldCache := false
-	if _, err := os.Stat(".env"); !os.IsNotExist(err) {
-		shouldCache = true
-	}
-
+	shouldCache := os.Getenv("ENVKEY_SHOULD_CACHE") != ""
 	loader.Load(shouldCache)
 }
