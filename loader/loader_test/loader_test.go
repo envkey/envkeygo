@@ -9,8 +9,8 @@ import (
 	"github.com/envkey/envkeygo/v2/loader"
 )
 
-const VALID_ENVKEY = "wYv78UmHsfEu6jSqMZrU-3w1kwyF35nRYwsAJ-env-staging.envkey.com"
-const INVALID_ENVKEY = "Emzt4BE7C23QtsC7gb1z-3NvfNiG1Boy6XH2oinvalid-env-staging.envkey.com"
+const VALID_ENVKEY = "ek3H3qNvXeyVvNv3sYYKChse-34QjA4A7oQskXPMYmjDzLS"
+const INVALID_ENVKEY = "ek3H3qNvXeyVvNv3sYYKChse-34QjA4A7oQskXPMinvalid"
 
 func TestLoadMissing(t *testing.T) {
 	os.Clearenv()
