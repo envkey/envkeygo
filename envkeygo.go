@@ -8,5 +8,5 @@ import (
 
 func init() {
 	shouldCache := os.Getenv("ENVKEY_SHOULD_CACHE") != ""
-	loader.Load(shouldCache)
+	loader.Load(shouldCache, true)
 }
