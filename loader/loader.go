@@ -15,12 +15,11 @@ func Load(shouldCache bool, firstAttempt bool) {
 
 	/*
 	* ENVKEY lookup order:
-	* 	1 - Argument passed via command line
-	*		2 - ENVKEY environment variable is set
-	*		3 - .env file in current directory
-	*		4 - .envkey config file in current directory {appId: string, orgId: string}
+	*		1 - ENVKEY environment variable is set
+	*		2 - .env file in current directory
+	*		3 - .envkey config file in current directory {appId: string, orgId: string}
 	*				+ file at ~/.envkey/apps/[appId].env (for local keys mainly)
-	*	  5 - .env file at ~/.env
+	*	  4 - .env file at ~/.env
 	 */
 
 	envkey, appConfig = env.GetEnvkey(false, "envFileOverride", true, false)
