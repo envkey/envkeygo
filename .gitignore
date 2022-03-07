@@ -12,4 +12,5 @@
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
-90b63bce5b54cf543af022297c7de5c225debfefbc2db524633608b65b97b9ec
+
+*.version.shasum
