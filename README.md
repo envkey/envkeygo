@@ -4,7 +4,7 @@ Integrate [EnvKey](https://www.envkey.com) with your Go projects to keep api key
 
 This repo is mirrored in two locations:
 
-- [A subdirectory of EnvKey's v2 monorepo](https://github.com/envkey/v2/tree/main/public/sdks/languages-and-frameworks/go/envkeygo).
+- [A subdirectory of EnvKey's v2 monorepo](https://github.com/envkey/envkey/tree/main/public/sdks/languages-and-frameworks/go/envkeygo).
 - [envkeygo module repo](https://github.com/envkey/envkeygo)
 
 # v1
